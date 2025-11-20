@@ -1,0 +1,20 @@
+# Python cache 
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.DS_Store
+
+# Temporary images
+temp_query.jpg
+
+# Exclude data folders (no personal / research data)
+images/reference/*
+images/query/*
+model/*
+output/*
+
+# Jupyter / notebook artifacts
+*.ipynb_checkpoints*/
+
+
