@@ -50,7 +50,8 @@ output/manual_verifications.csv
 
 ## Citation 
 if you use this code in research, please cite the associated Master thesis: 
-Wilms-Posen, E. (2025). Estimation of Mandarin fish (Synchiropus splendidus) abundance in Banda Naira, Indonesia using an automated photographic capture-recapture method. Masterthesis, Bochum, Germany
+Wilms-Posen, E. (2025). Population decline of Mandarin fish (Synchiropus splendidus) at Banda Naira, Indonesia: automated photographic capture-recapture for estimating abundance. Master's thesis, Bochum, Germany.
 
 ## License
 This project is licensed under the MIT License, see the LICENSE file for details.
+
