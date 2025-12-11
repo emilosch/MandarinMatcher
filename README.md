@@ -1,7 +1,7 @@
 # MandarinMatcher 
 
 **MandarinMatcher** is an image matching program that incorporates researcher verification for the individual identification of Mandarin fish (*Synchiropus splendidus*). 
-It emloys a ResNet-50 backbone to derive image embeddings and utilizes FAISS for fast nearest-neighbour search. 
+It employs a ResNet-50 backbone to derive image embeddings and utilizes FAISS for fast nearest-neighbour search. 
 This repository contains a streamlined, minimal version of the project developed and evaluated in the associated **Master of Science thesis**. No research pictures, models or personal data are included. Users must submit their own reference and query images. 
 
 ## Installation Process 
@@ -54,4 +54,5 @@ Wilms-Posen, E. (2025). Population decline of Mandarin fish (Synchiropus splendi
 
 ## License
 This project is licensed under the MIT License, see the LICENSE file for details.
+
 
