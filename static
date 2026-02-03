@@ -1,0 +1,12 @@
+body { font-family: system-ui, Arial, sans-serif; margin: 24px; color:#111; }
+header h1 { margin: 0 0 12px; }
+.panel { background:#fafafa; border:1px solid #eee; padding:16px; margin-bottom:16px; border-radius:8px; }
+.grid { display: grid; grid-template-columns: 300px 1fr; gap: 16px; align-items: start; }
+.row { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.card { border: 1px solid #e5e5e5; border-radius: 8px; padding: 10px; background: white; }
+.card img { width: 100%; height: auto; border-radius: 6px; display: block; }
+.meta { font-size: 13px; color: #444; margin-top: 6px; white-space: pre-line; }
+.actions { margin-top: 8px; }
+button { padding: 8px 10px; border-radius: 6px; border: none; background: #0d6efd; color: white; cursor: pointer; }
+button.btn-outline { background: white; color: #0d6efd; border: 1px solid #0d6efd; }
+label { margin-left: 10px; font-size: 14px; }
