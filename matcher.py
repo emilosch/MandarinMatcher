@@ -4,7 +4,7 @@ import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 os.environ["OMP_NUM_THREADS"] = "1"
 
-
+"""
 matcher.py
 Moderner Bildmatcher mit CNN-Embeddings + FAISS.
 
@@ -283,5 +283,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
