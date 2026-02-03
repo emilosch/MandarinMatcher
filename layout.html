@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title or "MandarinMatcher" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+</head>
+<body>
+  <header><h1>MandarinMatcher — Flask</h1></header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer><small>© 2025 — Research use only</small></footer>
+</body>
+</html>
