@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="panel">
+  <h2>Upload query image</h2>
+  <form id="uploadForm">
+    <input type="file" name="image" id="image" accept="image/*" required>
+    <label>Top-K: <input type="number" name="topk" id="topk" value="6" min="1" max="12"></label>
+    <button type="submit">Search</button>
+  </form>
+</section>
+
+<section id="results" class="panel" style="display:none;">
+  <h2>Results</h2>
+  <div class="grid">
+    <div class="card">
+      <img id="queryPreview" src="" alt="query">
+      <div class="meta">Query</div>
+    </div>
+    <div id="candidates" class="row"></div>
+  </div>
+</section>
+
+<script>
+const form = document.getElementById('uploadForm');
+const resultsSection = document.getElementById('results');
+const queryPreview = document.getElementById('queryPreview');
+const candidatesDiv = document.getElementById('candidates');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const resp = await fetch('/search', { method: 'POST', body: fd });
+  const data = await resp.json();
+  if (data.error) { alert(data.error); return; }
+
+  // Show query
+  queryPreview.src = `/uploads/${data.query}`;
+  candidatesDiv.innerHTML = '';
+  resultsSection.style.display = 'block';
+
+  // Render candidates
+  for (const r of data.results) {
+    const wrap = document.createElement('div');
+    wrap.className = 'card';
+    wrap.innerHTML = `
+      <img src="/reference/${r.basename}" alt="candidate">
+      <div class="meta"><strong>${r.basename}</strong><br>score: ${r.score.toFixed(3)}</div>
+      <div class="actions">
+        <button class="btn" data-ref="${r.path}" data-score="${r.score}">✔ Match</button>
+      </div>
+    `;
+    candidatesDiv.appendChild(wrap);
+  }
+
+  // "New" button
+  const newWrap = document.createElement('div');
+  newWrap.className = 'card';
+  newWrap.innerHTML = `
+    <div class="meta"><strong>Not listed?</strong></div>
+    <button class="btn-outline" id="markNew">Mark as NEW</button>
+  `;
+  candidatesDiv.appendChild(newWrap);
+
+  // Handlers
+  candidatesDiv.querySelectorAll('button.btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const body = { query: data.query, reference_abs: btn.dataset.ref, score: btn.dataset.score };
+      await fetch('/verify', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+      alert(`Logged match: ${btn.dataset.ref}`);
+    });
+  });
+
+  document.getElementById('markNew').addEventListener('click', async () => {
+    const body = { query: data.query, reference_abs: 'NEW', score: 0.0 };
+    await fetch('/verify', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
+    alert('Logged as NEW individual');
+  });
+});
+</script>
+{% endblock %}
